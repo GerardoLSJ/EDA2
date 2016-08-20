@@ -1,3 +1,5 @@
+import time
+
 comparations = 0
 
 def BubbleSort(arr):
@@ -15,5 +17,14 @@ def BubbleSort(arr):
     print(list)
     print("Comparaciones: " + str( comparations) )
 
+def timeElapsed(arr):
+	start_time = time.time()
+	print(BubbleSort(arr)) 
+	elapsed_time = time.time() - start_time
+	print(float("{0:.12f}".format(elapsed_time )))
 
-BubbleSort([2,3,4,5,1,51,2,41,0])
+
+timeElapsed([5,1,6,-4,7]) #5
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74]) #10
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74,4,8,7,1,5]) #15
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74,4,8,7,1,5,44,7,-874,47,98,14]) #20

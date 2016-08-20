@@ -1,6 +1,7 @@
 #Import library for stdin 
 import sys
-
+#import numpy as np
+import time
 
 comparations = 0
 def mergeList(list1,list2):
@@ -41,9 +42,23 @@ def mergeSort(list):
 
 	return mergeList(leftList , rigthList)	
 
-#print(mergeSort([10,2,5,6,2,-1,-5]))
+def timeElapsed(arr):
+	start_time = time.time()
+	print(mergeSort(arr)) 
+	elapsed_time = time.time() - start_time
+	print(float("{0:.12f}".format(elapsed_time )))
+	print("Comparaciones: " + str( comparations) )
+
+timeElapsed([5,1,6,-4,7]) #5
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74]) #10
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74,4,8,7,1,5]) #15
+timeElapsed([5,1,6,-4,7,7,9,11,-95,74,4,8,7,1,5,44,7,-874,47,98,14]) #20
 
 
+
+#print(np.random.rand(10,1))
+
+"""
 
 #Read from stdin and pass it to the function
 for line in sys.stdin:
@@ -53,3 +68,4 @@ for line in sys.stdin:
     print(comparations)
     
 
+"""

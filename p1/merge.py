@@ -1,9 +1,13 @@
+#Import library for stdin 
+import sys
 
-#list3 = []
+
+comparations = 0
 def mergeList(list1,list2):
-	#global list3
+	global comparations
 	list3 = []
 	while(len(list1)>0 and len(list2)>0  ):
+		comparations+=1
 
 		if( list1[0] < list2[0] ):
 			list3.append(list1[0])
@@ -37,9 +41,15 @@ def mergeSort(list):
 
 	return mergeList(leftList , rigthList)	
 
-print(mergeSort([2,1,5,3,10,0]))
-#mergeSort([1,2,56,5,4,9])
-#print(list3)
+#print(mergeSort([10,2,5,6,2,-1,-5]))
 
 
+
+#Read from stdin and pass it to the function
+for line in sys.stdin:
+    line = line.split(',')              #We recived 10,5,...n so we split by ","
+    arr =[int(e.strip()) for e in line] #Now we have an arr ['10','5'...'n'] and we need to cast to NUMBERS
+    print(mergeSort(arr))               #Now we pass the arr [10,5,...,n]
+    print(comparations)
+    
 

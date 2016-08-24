@@ -1,10 +1,10 @@
 def heapify(list,i):
 	if(2*i + 1 	<= len(list)-1 ):
 		if(list[2*i] < list[2*i + 1]):
-			max = list[2*i+1]
+			max = 2*i+1
 		else:
-			max = 2*1
-
+			max = 2*i
+			
 		if (list[i] < list[max]):
 			aux		 = list[i]
 			list[i]	 = list[max]
@@ -22,9 +22,9 @@ def heapify(list,i):
 def heapify_rec(list,i):
 	if(2*i + 1 	<= len(list)-1 ):
 		if(list[2*i] < list[2*i + 1]):
-			max = list[2*i+1]
+			max = 2*i+1
 		else:
-			max = 2*1
+			max = 2*i
 
 		if (list[i] < list[max]):
 			aux		 = list[i]
@@ -58,6 +58,7 @@ def heap(list):
 		heapify_rec(list,1)
 		return list3
 
+#print( heapify([10,2,3,11],1) )
 print ( heap([0,2,1,6,-1]) ) 
 	
 

@@ -60,7 +60,7 @@ def heap(list):
 	return list3
 
 #print( heapify([10,2,3,11],1) )
-print ( heap([0,2,1,6,-1]) ) 
+print ( heap([2,1,6,8,5,88,451,254]) )  #no funciona con NEGATIVOS ni CERO
 	
 
 

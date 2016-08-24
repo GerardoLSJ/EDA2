@@ -4,7 +4,7 @@ def heapify(list,i):
 			max = 2*i+1
 		else:
 			max = 2*i
-			
+
 		if (list[i] < list[max]):
 			aux		 = list[i]
 			list[i]	 = list[max]
@@ -50,13 +50,14 @@ def heap(list):
 	list =	heapify_rec(list,1 )
 	list3 = []
 	for i in range(1, len(list)-1 ):
+		print(list[1])
 		aux			 = list[1]
 		list[1] 	 = list[len(list)-1]
 		list[len(list)-1] = aux
 		list3.append(aux)
 		list = list[:len(list)-1]
 		heapify_rec(list,1)
-		return list3
+	return list3
 
 #print( heapify([10,2,3,11],1) )
 print ( heap([0,2,1,6,-1]) ) 

@@ -1,0 +1,71 @@
+
+
+python quick.py 
+
+
+2.38418579102e-05
+Comparaciones: 9
+3.40938568115e-05
+Comparaciones: 20
+3.91006469727e-05
+Comparaciones: 24
+6.19888305664e-05
+Comparaciones: 53
+8.20159912109e-05
+Comparaciones: 79
+9.60826873779e-05
+Comparaciones: 59
+0.000112056732178
+Comparaciones: 111
+0.000125169754028
+Comparaciones: 112
+0.000130891799927
+Comparaciones: 109
+0.00014591217041
+Comparaciones: 126
+0.000174045562744
+Comparaciones: 175
+0.000210046768188
+Comparaciones: 271
+0.00019097328186
+Comparaciones: 185
+0.000233173370361
+Comparaciones: 264
+0.000249147415161
+Comparaciones: 208
+
+
+
+ heap_comps.py 
+
+2.62260437012e-05
+Comparaciones: 10
+3.48091125488e-05
+Comparaciones: 37
+5.69820404053e-05
+Comparaciones: 74
+7.89165496826e-05
+Comparaciones: 110
+9.3936920166e-05
+Comparaciones: 143
+0.000138998031616
+Comparaciones: 182
+0.000159978866577
+Comparaciones: 244
+0.000189065933228
+Comparaciones: 313
+0.000220060348511
+Comparaciones: 364
+0.000245094299316
+Comparaciones: 403
+0.000313997268677
+Comparaciones: 424
+0.000298023223877
+Comparaciones: 504
+0.000319004058838
+Comparaciones: 540
+0.000369071960449
+Comparaciones: 633
+0.000411987304688
+Comparaciones: 708
+

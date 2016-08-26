@@ -52,3 +52,18 @@ for line in sys.stdin:
     comps = 0
     print (quick(line))
     print(comps)
+
+"""
+
+def timeElapsed(arr):
+	global comps
+	start_time = time.time()
+	wow = quick(arr) #custom function
+	elapsed_time = time.time() - start_time
+	print((elapsed_time ))
+	print("Comparaciones: " + str( comps) )
+	comps = 0
+
+
+
+"""

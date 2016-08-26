@@ -95,7 +95,17 @@ for line in sys.stdin:
 
     
 
-    
+"""
 
 
-## 33 en vez de 25  wtf
+def timeElapsed(arr):
+	global comps
+	start_time = time.time()
+	wow = heap(arr) #custom function
+	elapsed_time = time.time() - start_time
+	print((elapsed_time ))
+	print("Comparaciones: " + str( comps))
+	comps = 0
+
+
+"""

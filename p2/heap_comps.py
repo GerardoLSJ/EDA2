@@ -1,5 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#Import library for stdin 
+import sys
+#import numpy as np
+import time
 
 comps = 0
 def heapify(list,i):
@@ -80,11 +84,18 @@ def heap(list):
     return list3
 
 
-print ( heap([2,1,6,8,0,88,451,254]) )  
-print(comps)
-print("------------------")
-print ( heap([2,1,6,8,-5,88,-451,254]) )  
-print(comps)
+for line in sys.stdin:
+    line = line.replace('[','')
+    line = line.replace(']','')
+    line = line.split(',')
+    line = list(map(int, line))
+    comps = 0
+    print (heap(line))
+    print(comps)
+
+    
+
     
 
 
+## 33 en vez de 25  wtf

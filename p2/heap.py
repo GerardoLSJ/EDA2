@@ -1,3 +1,4 @@
+comps = 0
 def heapify(list,i):
 	if(2*i + 1 	<= len(list)-1 ):
 		if(list[2*i] < list[2*i + 1]):
@@ -49,7 +50,7 @@ def heap(list):
 		list = heapify(list,i)
 	list =	heapify_rec(list,1 )
 	list3 = []
-	for i in range(1, len(list)-1 ):
+	for i in range(1, len(list) ):
 		print(list[1])
 		aux			 = list[1]
 		list[1] 	 = list[len(list)-1]
@@ -60,7 +61,9 @@ def heap(list):
 	return list3
 
 #print( heapify([10,2,3,11],1) )
-print ( heap([2,1,6,8,5,88,451,254]) )  #no funciona con NEGATIVOS ni CERO
+print ( heap([2,1,6,8,0,88,451,254]) )  #Ordena de MAYOR a MENOR lol
+print("------------------")
+print ( heap([2,1,6,8,-5,88,-451,254]) )  #Ordena de MAYOR a MENOR lol
 	
 
 

@@ -11,7 +11,6 @@ def reacomodo(lista,posPivote):
     global comps
     j=0
     for i in range(0,posPivote):
-        print(comps)
         comps+=1
 
         if (lista[i] < lista[posPivote]):
@@ -32,16 +31,24 @@ def reacomodo(lista,posPivote):
 
 
 def quick(lista):
-    if(len(lista) <= 2):
+    if(len(lista) <= 1):
         
         return lista
 
 
-    pivote	= randint(0,len(lista)-1)
+    #pivote	= randint(0,len(lista)-1)
+    switch  = randint(0,len(lista)-1)
+    aux =  lista[len(lista)-1]
+    lista[len(lista)-1] = lista[switch]
+    lista[switch] = aux
+    #print(switch)
 
+    pivote	= (len(lista)-1)
+    print(len(lista))
     retorno = reacomodo(lista,pivote)
     lista 	= retorno[0]
     piv 	= retorno[1]
+
 
     lista1	= quick(lista[:piv])
     lista2  = quick(lista[piv+1:])

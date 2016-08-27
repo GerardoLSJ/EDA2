@@ -73,7 +73,7 @@ def heap(list):
     
     list3 = []
     
-    for i in range(1, len(list) ):
+    for i in range(0, len(list)-1 ):
         aux			 = list[1]
         list[1] 	 = list[len(list)-1]
         list[len(list)-1] = aux

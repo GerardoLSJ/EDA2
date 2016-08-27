@@ -1,3 +1,10 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+#Import library for stdin 
+import sys
+#import numpy as np
+import time
+
 comps = 0
 def heapify(list,i):
 	if(2*i + 1 	<= len(list)-1 ):
@@ -50,7 +57,7 @@ def heap(list):
 		list = heapify(list,i)
 	list =	heapify_rec(list,1 )
 	list3 = []
-	for i in range(1, len(list) ):
+	for i in range(0, len(list)-1 ):
 		print(list[1])
 		aux			 = list[1]
 		list[1] 	 = list[len(list)-1]
@@ -60,10 +67,15 @@ def heap(list):
 		heapify_rec(list,1)
 	return list3
 
-#print( heapify([10,2,3,11],1) )
-print ( heap([2,1,6,8,0,88,451,254]) )  #Ordena de MAYOR a MENOR lol
-print("------------------")
-print ( heap([2,1,6,8,-5,88,-451,254]) )  #Ordena de MAYOR a MENOR lol
-	
+
+def timeElapsed(arr):
+	global comps
+	start_time = time.time()
+	wow = heap(arr) #custom function
+	elapsed_time = time.time() - start_time
+	print((elapsed_time ))
+	print("Comparaciones: " + str( comps))
+	comps = 0
 
 
+timeElapsed([0,72,4,17,57,8,87,78,73])

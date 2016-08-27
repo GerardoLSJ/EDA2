@@ -24,7 +24,7 @@ def heapify(list,i):
     
     elif (2*i <= len(list)-1):
         comps+=1
-        if(2*i <= len(list)-1):
+        if(list[i] < list[2*i]):
             comps+=1
             aux		 = list[i]
             list[i]	 = list[2*i]
@@ -84,16 +84,8 @@ def heap(list):
     return list3
 
 
-for line in sys.stdin:
-    line = line.replace('[','')
-    line = line.replace(']','')
-    line = line.split(',')
-    line = list(map(int, line))
-    comps = 0
-    print (heap(line))
-    print(comps)
-
-    
+print(heap([0,72,4,17,57,8,87,78,73]))
+print(comps)
 
 """
 

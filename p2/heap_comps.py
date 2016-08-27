@@ -6,32 +6,6 @@ import sys
 import time
 
 comps = 0
-def heapify(list,i):
-    global comps
-    if(2*i + 1 	<= len(list)-1 ):
-        comps+=1
-        if(list[2*i] < list[2*i + 1]):
-            
-            max = 2*i+1
-        else:
-            max = 2*i
-        comps+=1
-        if (list[i] < list[max]):
-            
-            aux		 = list[i]
-            list[i]	 = list[max]
-            list[max] = aux
-    
-    elif (2*i <= len(list)-1):
-        comps+=1
-        if(list[i] < list[2*i]):
-            
-            aux		 = list[i]
-            list[i]	 = list[2*i]
-            list[2*i] = aux
-    
-    return list
-
 
 def heapify_rec(list,i):
     global comps
@@ -66,14 +40,14 @@ def heapify_rec(list,i):
 
 def heap(list):
 
-    for i in range(len(list)//2,1,-1 ):
-        list = heapify(list,i)
+    for i in range(len(list)//2,0,-1 ):
+        list = heapify_rec(list,i)
 
-    list =	heapify_rec(list,1 )
+
     
     list3 = []
     
-    for i in range(1, len(list) ):
+    for i in range(0, len(list)-1 ):
         aux			 = list[1]
         list[1] 	 = list[len(list)-1]
         list[len(list)-1] = aux

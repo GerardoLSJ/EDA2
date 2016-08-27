@@ -17,22 +17,20 @@ que ya esta pseudo-ordenados en sus localidades de "padre - hijos"
 """
 
 comps = 0
-def heapify(list,i):                #Comparamos a los nodos padres
-    global comps                    #con sus hijos para hacer o no un intercambio
-    if(2*i + 1 	<= len(list)-1 ):   #primero IMPARES 
+def heapify(list,i):                
+    global comps                    
+    if(2*i + 1 	<= len(list)-1 ):       #primero caso 
         comps+=1
-        if(list[2*i] < list[2*i + 1]): #Primero checamos cual hijo es mayor
+        if(list[2*i] < list[2*i + 1]):  #Primero checamos cual hijo es mayor
             comps+=1
             max = 2*i+1                 #y guardamos su localidad
         else:
-            max = 2*i                   #en ambos casos
-        
+            max = 2*i                   #en ambos casos 
         if (list[i] < list[max]):       #checamos si es mayor que el "padre"
             comps+=1
             aux		 = list[i]          #de ser así los intercambiamos
             list[i]	 = list[max]
-            list[max] = aux
-    
+            list[max] = aux   
     elif (2*i <= len(list)-1):          # Segundo PARES
         comps+=1
         if(list[i] < list[2*i]):        #checamos que el padre
@@ -43,32 +41,31 @@ def heapify(list,i):                #Comparamos a los nodos padres
     
     return list
 
-
-def heapify_rec(list,i):
-    global comps
-    if(2*i + 1 	<= len(list)-1 ):
-        comps+=1
-        if(list[2*i] < list[2*i + 1]):
+def heapify_rec(list,i):                #Comparamos a los nodos padres con sus
+    global comps                        #hijos para hacer o no un intercambio
+    if(2*i + 1 	<= len(list)-1 ):       #primero IMPARES 
+        comps+=1                        
+        if(list[2*i] < list[2*i + 1]):  #Primero checamos cual hijo es mayor
             comps+=1
-            max = 2*i+1
-        else:
-            max = 2*i
-
-        if (list[i] < list[max]):
+            max = 2*i+1                 #y guardamos su indice
+        else:                           #
+            max = 2*i                   #en ambos casos
+        if (list[i] < list[max]):       #checamos si es mayor que el "padre"
             comps+=1
-            aux		 = list[i]
+            aux		 = list[i]          #de ser así los intercambiamos
             list[i]	 = list[max]
             list[max] = aux
             heapify_rec(list,max)       #ejecutamos sobre la misma rama
                                         # y no sobre todo el arbol
-    elif (2*i <= len(list)-1):
+    elif (2*i <= len(list)-1):          # Segundo caso
         comps+=1
-        if(list[i] < list[2*i]):
-            comps+=1
+        if(list[i] < list[2*i]):        #checamos que el padre
+            comps+=1                    #no sea menor que el hijo
             aux		 = list[i]
             list[i]	 = list[2*i]
             list[2*i] = aux
-            heapify_rec(list,2*i)
+            heapify_rec(list,2*i)       #ejecutamos sobre la misma rama
+                                        # y no sobre todo el arbol
     
     return list
 
@@ -99,7 +96,7 @@ for line in sys.stdin:
     line = line.replace('[','') #recibimos un String y para volverlo
     line = line.replace(']','') #arreglo tenemos que elimiar esos chars
     line = line.split(',')      #para despues separar en un arr de letras
-    line = list(map(int, line)) #y mappearlos o cast a enteros
+    line = list(map(int, line)) #y mappearlos (cast) a enteros
     comps = 0
     print (heap(line))
     print(comps)

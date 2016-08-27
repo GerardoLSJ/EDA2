@@ -4,14 +4,18 @@
 import sys
 #import numpy as np
 import time
+from random import randint
 
 comps = 0
 def reacomodo(lista,posPivote):
     global comps
     j=0
     for i in range(0,posPivote):
+        print(comps)
         comps+=1
+
         if (lista[i] < lista[posPivote]):
+           
 
             aux		 = lista[j]
             lista[j] = lista[i]
@@ -28,11 +32,13 @@ def reacomodo(lista,posPivote):
 
 
 def quick(lista):
-    global comps
-    if(len(lista) <= 1):
+    if(len(lista) <= 2):
+        
         return lista
-    
-    pivote	= len(lista)-1
+
+
+    pivote	= randint(0,len(lista)-1)
+
     retorno = reacomodo(lista,pivote)
     lista 	= retorno[0]
     piv 	= retorno[1]
@@ -43,12 +49,32 @@ def quick(lista):
     return lista1[:] + lista2[:]
 
 
+comps = 0
+aux = quick([10,6,5,2,2,-1,-5])
+print(aux)
+print(comps)
+
+
+"""
 for line in sys.stdin:
     line = line.replace('[','')
     line = line.replace(']','')
     line = line.split(',')
     line = list(map(int, line))
     comps = 0
-    result = (quick(line))
-    print (result)
+    print (quick(line))
     print(comps)
+
+
+def timeElapsed(arr):
+	global comps
+	start_time = time.time()
+	wow = quick(arr) #custom function
+	elapsed_time = time.time() - start_time
+	print((elapsed_time ))
+	print("Comparaciones: " + str( comps) )
+	comps = 0
+
+
+
+"""

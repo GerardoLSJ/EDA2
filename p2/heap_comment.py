@@ -7,7 +7,12 @@ import time
 
 """
 Funcionamiento:
-
+Basicamente recorremos el arreglo una vez o "arbol" para encontrar un MAXIMO 
+este se vuelve nuestro ROOT, despues los nodos "padres" con sus hijos estan 
+de cierta manera "ordenaodos" por lo que aprovechamos eso para ahora solo reccorer
+las partes del arreglo necesarias, es decir de las hojas mas grandes el camino
+mas corto a la ROOT con heapify_rec, de esta manera nos ahorramos el recorrer elementos
+que ya esta pseudo-ordenados en sus localidades de "padre - hijos"
 
 """
 
@@ -30,8 +35,8 @@ def heapify(list,i):                #Comparamos a los nodos padres
     
     elif (2*i <= len(list)-1):          # Segundo PARES
         comps+=1
-        if(list[i] < list[2*i]):         #
-            comps+=1
+        if(list[i] < list[2*i]):        #checamos que el padre
+            comps+=1                    #no sea menor que el hijo
             aux		 = list[i]
             list[i]	 = list[2*i]
             list[2*i] = aux
@@ -54,8 +59,8 @@ def heapify_rec(list,i):
             aux		 = list[i]
             list[i]	 = list[max]
             list[max] = aux
-            heapify_rec(list,max)
-    
+            heapify_rec(list,max)       #ejecutamos sobre la misma rama
+                                        # y no sobre todo el arbol
     elif (2*i <= len(list)-1):
         comps+=1
         if(list[i] < list[2*i]):
@@ -72,16 +77,16 @@ def heapify_rec(list,i):
 
 def heap(list):
 
-    for i in range(len(list)//2,1,-1 ):
-        list = heapify(list,i)
-
-    list =	heapify_rec(list,1 )
+    for i in range(len(list)//2,1,-1 ): #ejecutamos una primera vez 
+        list = heapify(list,i)          #sobre todo el arbol para tener un MAX 
+                                        #como ROOT
+    list =	heapify_rec(list,1 )        
     
-    list3 = []
-    
-    for i in range(0, len(list)-1 ):
-        aux			 = list[1]
-        list[1] 	 = list[len(list)-1]
+    list3 = []                          #almacenamos los valores MAX que 
+                                        #vamos "pusheando"
+    for i in range(0, len(list)-1 ):    #pusheamos los MAX en vada vuelta
+        aux			 = list[1]          # y los eliminamos 
+        list[1] 	 = list[len(list)-1]   #conforme vayamos subiendo mas hojas
         list[len(list)-1] = aux
         list3.append(aux)
         list = list[:len(list)-1]
@@ -90,11 +95,11 @@ def heap(list):
     return list3
 
 
-for line in sys.stdin:
-    line = line.replace('[','')
-    line = line.replace(']','')
-    line = line.split(',')
-    line = list(map(int, line))
+for line in sys.stdin:      
+    line = line.replace('[','') #recibimos un String y para volverlo
+    line = line.replace(']','') #arreglo tenemos que elimiar esos chars
+    line = line.split(',')      #para despues separar en un arr de letras
+    line = list(map(int, line)) #y mappearlos o cast a enteros
     comps = 0
     print (heap(line))
     print(comps)

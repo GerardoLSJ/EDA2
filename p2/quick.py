@@ -10,8 +10,11 @@ def reacomodo(lista,posPivote):
     global comps
     j=0
     for i in range(0,posPivote):
+        print(comps)
+        comps+=1
+
         if (lista[i] < lista[posPivote]):
-            comps+=1
+           
 
             aux		 = lista[j]
             lista[j] = lista[i]
@@ -28,9 +31,9 @@ def reacomodo(lista,posPivote):
 
 
 def quick(lista):
-    global comps
+
     if(len(lista) <= 1):
-        comps+=1
+        
         return lista
     
     pivote	= len(lista)-1
@@ -44,6 +47,13 @@ def quick(lista):
     return lista1[:] + lista2[:]
 
 
+comps = 0
+aux = quick([10,6,5,2,2,-1,-5])
+print(aux)
+print(comps)
+
+
+"""
 for line in sys.stdin:
     line = line.replace('[','')
     line = line.replace(']','')
@@ -53,7 +63,6 @@ for line in sys.stdin:
     print (quick(line))
     print(comps)
 
-"""
 
 def timeElapsed(arr):
 	global comps

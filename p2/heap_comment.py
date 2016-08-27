@@ -30,7 +30,7 @@ def heapify(list,i):                #Comparamos a los nodos padres
     
     elif (2*i <= len(list)-1):          # Segundo PARES
         comps+=1
-        if(2*i <= len(list)-1):         #
+        if(list[i] < list[2*i]):         #
             comps+=1
             aux		 = list[i]
             list[i]	 = list[2*i]

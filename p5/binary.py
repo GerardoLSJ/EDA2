@@ -30,9 +30,8 @@ for linea in archivo.readlines():
 
 lista = lista_alumnos #Beautify code 
 
-print("Ingrese el # de lista a buscar:")
 query = int(raw_input())
 
 index = BinarySearch(lista,query,0, (len(lista)-1) )
-print("location: "+ str(index))
-print("Result: " + str(lista[index]))
+
+print(lista[index])

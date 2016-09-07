@@ -1,7 +1,5 @@
-contador = 0
-def BinarySearch(arr,query,start,end):
 
-    global contador
+def BinarySearch(arr,query,start,end):
     if(start > end):
         print("False")
         return False
@@ -16,31 +14,25 @@ def BinarySearch(arr,query,start,end):
     if(arr[medium] == query):
         print(medium)
         print("Arr[c] == query")
-        return medium + 1
+        return medium
 
     else:
         if(query > arr[medium]):
             print("if")
-            print("query",query)
-            print("arr[medium]",arr[medium])
-            contador+=1
-            if(contador < 5):
-                return BinarySearch(arr,query,medium+1,end)
-            else:
-                print("omg")
+
+
+            return BinarySearch(arr,query,medium+1,end)
+
         else:
             print("else")
-            print("query",query)
-            print("arr[medium]",arr[medium])
-            contador+=1
-            if(contador < 5):
-                return  BinarySearch(arr,query,start,medium-1)
-            else:
-                print("omg")
-            #return BinarySearch(arr,query,start,medium)
 
 
-lista = [1,2,3,4,5,6,7,11,448]
+            return  BinarySearch(arr,query,start,medium-1)
+           
 
-index = BinarySearch(lista,448,0, (len(lista)-1) )
-print(index)
+
+lista = [1,2,3,4,5,6,7,11,44,85]
+
+index = BinarySearch(lista,int(raw_input()),0, (len(lista)-1) )
+print("index",index)
+print("lista: ",lista[index])

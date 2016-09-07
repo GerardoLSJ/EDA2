@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 def BinarySearch(arr,query,start,end):
     if(start > end):
@@ -6,33 +8,31 @@ def BinarySearch(arr,query,start,end):
 
     medium = int((end - start)/2) + start
 
-    print("medium",medium)
-    print("start",start)
-    print("end",end)
-    
-
-    if(arr[medium] == query):
-        print(medium)
-        print("Arr[c] == query")
+    arrInt = int(arr[medium][0])
+    if(arrInt == query):
         return medium
 
     else:
-        if(query > arr[medium]):
-            print("if")
-
-
+        arrInt = int(arr[medium][0])
+        if(query > arrInt):
             return BinarySearch(arr,query,medium+1,end)
 
         else:
-            print("else")
-
-
             return  BinarySearch(arr,query,start,medium-1)
            
 
+archivo = open("lista.txt","r")
+lista_alumnos = []
+for linea in archivo.readlines():
+	tupla = linea.split("\t")
+	tupla[2] = tupla[2].replace("\n","")
+	lista_alumnos.append(tupla)
 
-lista = [1,2,3,4,5,6,7,11,44,85]
+lista = lista_alumnos #Beautify code 
 
-index = BinarySearch(lista,int(raw_input()),0, (len(lista)-1) )
-print("index",index)
-print("lista: ",lista[index])
+print("Ingrese el # de lista a buscar:")
+query = int(raw_input())
+
+index = BinarySearch(lista,query,0, (len(lista)-1) )
+print("location: "+ str(index))
+print("Result: " + str(lista[index]))

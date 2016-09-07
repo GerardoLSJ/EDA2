@@ -28,8 +28,14 @@ def radix(l):
         
 
     return l 
-                                
 
+
+
+line = ["10000000000","0000744444444444444444444442","4","8177","57","8","87","78","73"]
+result = radix(line)
+result = list(map(int, result))     #MAP string to int of the result 
+print (result)                               
+""" 
 for line in sys.stdin:
     line = line.replace('[','')
     line = line.replace(']','')
@@ -37,3 +43,4 @@ for line in sys.stdin:
     result = (radix(line))
     result = list(map(int, result))     #MAP string to int of the result 
     print (result)
+"""

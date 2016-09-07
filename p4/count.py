@@ -26,4 +26,4 @@ def counting(l):
 		s[ ocu[l[i] - min] ] = l[i]  
 	print s
 
-counting([9,1,1,4,2,2,1,1,1,1,12,8,9])
+counting([-9,1,-1,4,2,2,1,1,1,1,12,8,9])

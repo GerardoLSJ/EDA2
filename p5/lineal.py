@@ -1,6 +1,6 @@
-def bsec(l,j):
+def bsec(l,query):
 	for i in range(len(l)):
-		if( j == int(l[i][0]) ):
+		if( query == int(l[i][0]) ):
 			return l[i]
 		
 	return None					

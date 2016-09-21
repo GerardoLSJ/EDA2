@@ -37,6 +37,8 @@ class graph:
 			cola = []
 			cola.append(r)
 			self.vertices[r].visitado = True
+			self.vertices[r].nivel = 0
+			print(r,0) #primera linea bonita
 			while(len(cola)>0):
 				act = cola[0]
 				cola = cola[1:]
@@ -45,8 +47,8 @@ class graph:
 						
 						cola.append(vec)
 						self.vertices[vec].visitado = True
-						self.vertices[vec].nivel = self.vertices[act].nivel+1
-						print(vec, self.vertices[vec].nivel)
+						self.vertices[vec].nivel = self.vertices[act].nivel +1
+						print(vec, self.vertices[vec].nivel ) 
 		else:
 			print("Vertice no existe")	
 

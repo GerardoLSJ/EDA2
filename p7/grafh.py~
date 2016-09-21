@@ -46,6 +46,9 @@ class main:
 	g.agregarArista(4,3)
 	g.agregarArista(4,5)
 
+
+
+
+
 	g.imprimirGrafica()
 	
-	#TODO: parse list of vertex and Edged

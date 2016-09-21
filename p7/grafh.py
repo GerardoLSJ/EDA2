@@ -32,6 +32,24 @@ class graph:
 			print("Vertices: ", self.vertices[v].id)
 			print("Aristas: ", self.vertices[v].vecinos)		
 
+	def BFS(self, r):
+		if( r in self.vertices):
+			cola = []
+			cola.append(r)
+			self.vertices[r].visitado = True
+			while(len(cola)>0):
+				act = cola[0]
+				cola = cola[1:]
+				for vec in self.vertices[act].vecinos:
+					if(self.vertices[vec].visitado == False):
+						
+						cola.append(vec)
+						self.vertices[vec].visitado = True
+						self.vertices[vec].nivel = self.vertices[act].nivel+1
+						print(vec, self.vertices[vec].nivel)
+		else:
+			print("Vertice no existe")	
+
 
 class main:
 	g = graph()
@@ -40,12 +58,17 @@ class main:
 	g.agregarVertice(3)
 	g.agregarVertice(4)
 	g.agregarVertice(5)
+	g.agregarVertice(6)
+	
 	g.agregarArista(1,2)
 	g.agregarArista(2,4)
 	g.agregarArista(2,3)
 	g.agregarArista(4,3)
 	g.agregarArista(4,5)
-
+	g.agregarArista(6,5)
 	g.imprimirGrafica()
+	g.BFS(int(raw_input()))
+
+	
 	
 	#TODO: parse list of vertex and Edged

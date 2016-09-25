@@ -54,22 +54,21 @@ class graph:
 
 
 class main:
+	root = 46
+	nodes = [2, 46, 164, 76, 128, 36, 183, 156, 58, 70]
+	vertex = [[76, 46], [46, 156], [183, 164], [70, 156], [2, 164], [2, 164], [76, 164], [76, 2], [128, 46], [58, 46], [164, 128], [46, 128], [2, 128]]
+
 	g = graph()
-	g.agregarVertice(1)
-	g.agregarVertice(2)
-	g.agregarVertice(3)
-	g.agregarVertice(4)
-	g.agregarVertice(5)
-	g.agregarVertice(6)
+
+	for item in nodes:
+		g.agregarVertice(item)
+
+	for pair in vertex:
+		g.agregarArista(pair[0],pair[1])
+
 	
-	g.agregarArista(1,2)
-	g.agregarArista(2,4)
-	g.agregarArista(2,3)
-	g.agregarArista(4,3)
-	g.agregarArista(4,5)
-	g.agregarArista(6,5)
 	g.imprimirGrafica()
-	g.BFS(int(raw_input()))
+	g.BFS(root)
 
 	
 	

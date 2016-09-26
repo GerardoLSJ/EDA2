@@ -1,3 +1,5 @@
+import sys
+
 class vertex:
 	def __init__(self, i):
 		self.id 	= i
@@ -38,7 +40,7 @@ class graph:
 			cola.append(r)
 			self.vertices[r].visitado = True
 			self.vertices[r].nivel = 0
-			#print(r,0)
+			print(r,0) #primera linea bonita
 			while(len(cola)>0):
 				act = cola[0]
 				cola = cola[1:]
@@ -52,24 +54,46 @@ class graph:
 		else:
 			print("Vertice no existe")	
 
+	
+	def _BFS(self,root,target):
+		
+		self.BFS(target)
+		if self.vertices[root].nivel == -1:
+			print("No existe camino")
+		else:
+
+			actual = root
+			l = []
+			l.append(actual)
+			#print(actual)
+
+			while actual != target:
+				for vec in self.vertices[actual].vecinos:
+					if self.vertices[vec].nivel == self.vertices[actual].nivel -1:
+						l.append(vec)
+						#print(vec)
+						actual = vec
+			
+			for i in reversed(l):
+				print i
+
 
 class main:
+	#root = [100, 133]
+	root =[45, 155]
+	nodes = [45, 84, 169, 64, 21, 155, 83, 52, 22, 162, 27, 110, 60, 154, 128, 181, 114]
+	vertex = [[84, 128], [60, 169], [169, 60], [27, 52], [154, 155], [162, 84], [128, 60], [162, 181], [154, 155], [60, 114], [21, 181], [27, 52], [52, 155], [155, 52], [110, 60], [110, 114], [64, 84], [114, 22], [45, 22], [114, 162], [169, 22], [83, 110], [181, 60], [154, 181], [169, 110], [110, 169]]
 	g = graph()
-	g.agregarVertice(1)
-	g.agregarVertice(2)
-	g.agregarVertice(3)
-	g.agregarVertice(4)
-	g.agregarVertice(5)
-	g.agregarVertice(6)
+
+	for item in nodes:
+		g.agregarVertice(item)
+
+	for pair in vertex:
+		g.agregarArista(pair[0],pair[1])
+
 	
-	g.agregarArista(1,2)
-	g.agregarArista(2,4)
-	g.agregarArista(2,3)
-	g.agregarArista(4,3)
-	g.agregarArista(4,5)
-	g.agregarArista(6,5)
-	g.imprimirGrafica()
-	g.BFS(int(raw_input()))
+	#g.imprimirGrafica()
+	g._BFS(root[1],root[0])
 
 	
 	

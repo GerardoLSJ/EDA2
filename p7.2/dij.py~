@@ -5,7 +5,7 @@ class vertex:
 		self.visitado 	= False
 		self.nivel 	= -1
 		self.vecinos 	= []
-		self.costo	= float("inf") #Decimal('Infinity')
+		self.costo	= 100001#float('inf') #Decimal('Infinity')
 
 	def agregarVecino(self, v):
 		if(v[0] not in self.vecinos): 	#Evitar aristas repetidos
@@ -27,7 +27,7 @@ class graph:
 	def imprimirGrafica(self):
 		print("Grafica: ")
 		for v in self.vertices:
-			print("Vertices: ", self.vertices[v].id)
+			print("Vertices: ", self.vertices[v].id, self.vertices[v].costo)
 			print("Aristas: ", self.vertices[v].vecinos)		
 
 	def BFS(self, r):
@@ -94,9 +94,12 @@ class graph:
 					self.vertices[vec[0]].costo = self.vertices[m].costo + vec[1]
 					print(self.vertices[vec[0]].costo)
 				
-				if(vec[0] not in lista):
+				if(self.vertices[vec[0]].visitado ==False):
+					#print("before",lista)
 					lista.append(vec[0])
-			lista.remove(m)		
+					#print("after",lista)
+			lista.remove(m)
+			self.vertices[m].visitado =True		
 			
 			
 
@@ -121,7 +124,7 @@ class main:
 	g.agregarArista(4,5,4)
 	g.agregarArista(6,5,3)
 	g.agregarArista(7,6,1)
-	g.agregarArista(1,7,4)
+	#g.agregarArista(1,7,4)
 
 	root = 2
 	nodes = [2, 46, 164, 76, 128, 36, 183, 156, 58, 70]
@@ -138,6 +141,7 @@ class main:
 	"""
 	g.imprimirGrafica()
 	g.dijkstra(1,3)
+	g.imprimirGrafica()
 	#g.DFS(root,0)
 	#g.topoSort()
 	#g.BFS(root)

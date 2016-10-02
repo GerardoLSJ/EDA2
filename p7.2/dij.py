@@ -173,10 +173,10 @@ class main:
 
 	#g.imprimirGrafica()
 
-
-	g.dijkstra(1,5)
+	omg = 2
+	g.dijkstra(1,-1)
 	#g.imprimirGrafica()
-	g.shortPath(1,5)
+	g.shortPath(omg,5)
 	rev = path[::-1] 
 	print (rev) 
 	print (costo)

@@ -1,4 +1,7 @@
 
+path = []
+costo = -1
+
 class vertex:
 	def __init__(self, i):
 		self.id 	= i
@@ -6,6 +9,7 @@ class vertex:
 		self.nivel 	= -1
 		self.vecinos 	= []
 		self.costo	= 100001#float('inf') #Decimal('Infinity')
+		self.padre = False
 
 	def agregarVecino(self, v):
 		if(v[0] not in self.vecinos): 	#Evitar aristas repetidos
@@ -27,8 +31,8 @@ class graph:
 	def imprimirGrafica(self):
 		print("Grafica: ")
 		for v in self.vertices:
-			print("Vertices: ", self.vertices[v].id, self.vertices[v].costo)
-			print("Aristas: ", self.vertices[v].vecinos)		
+			print("Vertices: ", self.vertices[v].id, "PADRE: ",self.vertices[v].padre, "COSTO: ",self.vertices[v].costo  )
+			#print("Aristas: ", self.vertices[v].vecinos)		
 
 	def BFS(self, r):
 		if( r in self.vertices):		
@@ -86,13 +90,16 @@ class graph:
 		for v in self.vertices[a].vecinos:
 			self.vertices[v[0]].costo = v[1]
 			lista.append(v[0])
-		print (lista)
+		#print (lista)
 		while(len(lista)>0):
 			m = self.minimo(lista)
 			for vec in self.vertices[m].vecinos:
 				if (self.vertices[m].costo + vec[1]) < (self.vertices[vec[0]].costo): 
 					self.vertices[vec[0]].costo = self.vertices[m].costo + vec[1]
-					print(self.vertices[vec[0]].costo)
+					self.vertices[vec[0]].padre = self.vertices[m].id
+					#print("Hijo: ",self.vertices[vec[0]].id )
+					#print("padre: ",self.vertices[vec[0]].padre )
+					#print(self.vertices[vec[0]].costo)
 				
 				if(self.vertices[vec[0]].visitado ==False):
 					#print("before",lista)
@@ -102,12 +109,37 @@ class graph:
 			self.vertices[m].visitado =True		
 			
 			
+	def shortPath(self,source, target):
+		global path
+		global costo
+		
+		path.append(target)
+		if( self.vertices[target].padre != False):
+			#print(self.vertices[target].padre)
+			path.append(self.vertices[target].padre)
+			self._shortPath(source, self.vertices[target].padre)
+			
+		else:
+			path.append(self.vertices[source].id)
+			costo = self.vertices[path[0]].costo 
+			
 
-				
+	def _shortPath(self,source, target):
+		global path
+		global costo
+		if( self.vertices[target].padre != False):
+			path.append(self.vertices[target].padre)
+			#print(self.vertices[target].padre)
+			self._shortPath(source, self.vertices[target].padre)
+			
+		else:
+			path.append(self.vertices[source].id)
+			costo = self.vertices[path[0]].costo 
 
 
 class main:
 
+	"""
 	g = graph()
 	g.agregarVertice(1)
 	g.agregarVertice(2)
@@ -125,23 +157,31 @@ class main:
 	g.agregarArista(6,5,3)
 	g.agregarArista(7,6,1)
 	#g.agregarArista(1,7,4)
-
-	root = 2
-	nodes = [2, 46, 164, 76, 128, 36, 183, 156, 58, 70]
-	vertex = [[76, 46], [46, 156], [183, 164], [70, 156], [2, 164], [2, 164], [76, 164], [76, 2], [128, 46], [58, 46], [164, 128], [46, 128], [2, 128]]
 	"""
+
+	root = 	[1, 5]
+	nodes = [1, 2, 3, 4, 5, 6, 7]
+	vertex = [[1, 2, 2], [2, 4, 10], [2, 3, 5], [3, 5, 2], [4, 3, 2], [4, 5, 4], [6, 5, 3], [7, 6, 1]]
+		
 	g = graph()
 
 	for item in nodes:
 		g.agregarVertice(item)
 
 	for pair in vertex:
-		g.agregarArista(pair[0],pair[1], 1)
+		g.agregarArista(pair[0],pair[1], pair[2])
 
-	"""
-	g.imprimirGrafica()
-	g.dijkstra(1,3)
-	g.imprimirGrafica()
+	#g.imprimirGrafica()
+
+
+	g.dijkstra(1,5)
+	#g.imprimirGrafica()
+	g.shortPath(1,5)
+	rev = path[::-1] 
+	print (rev) 
+	print (costo)
+
+
 	#g.DFS(root,0)
 	#g.topoSort()
 	#g.BFS(root)

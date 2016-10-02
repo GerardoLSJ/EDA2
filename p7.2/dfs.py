@@ -6,6 +6,7 @@ class vertex:
 		self.nivel 	= -1
 		self.vecinos 	= []
 		self.costo	= float("inf") #Decimal('Infinity')
+		self.mark = -1
 
 	def agregarVecino(self, v):
 		if(v[0] not in self.vecinos): 	#Evitar aristas repetidos
@@ -53,27 +54,56 @@ class graph:
 			print("Vertice no existe")	
 
 
-	def DFS(self,r,n):
+	def DFS(self,r,n,topo):
 		if r in self.vertices:
 			self.vertices[r].visitado = True
 			self.vertices[r].nivel = n
 			print (r,n)
 			for v in self.vertices[r].vecinos:
-				if self.vertices[v[0]].visitado == False:			
-					self.DFS(v[0],n+1)
+				if self.vertices[v[0]].visitado == False:
+
+					
+					self.DFS(v[0],n+1,topo)
+
+
 
 	def topoSort(self):
 		n = len(self.vertices)  #casa
+		topo = n
 		for v in self.vertices:
 			if self.vertices[v].visitado == False:
-				self.DFS(v,0)
+				self.DFS(v,0,topo)
 
+
+	def times(self,max,len):
+		for v in self.vertices:
+			for v in self.vertices[v].vecinos:
+				print(v)
+
+
+
+
+
+	def falsyVisit(self):
+		max_level = 0
+		n = len(self.vertices)  #casa
+		for v in self.vertices:
+			if(self.vertices[v].nivel > max_level):
+				max_level = self.vertices[v].nivel
+
+			print("Vertices: ", self.vertices[v].id," Nivel: ", self.vertices[v].nivel)
+			self.vertices[v].visitado = False
+
+		self.times (max_level,n)	
 				
+
+
+					
 
 
 class main:
 
-	g = graph()
+	"""
 	g.agregarVertice(1)
 	g.agregarVertice(2)
 	g.agregarVertice(3)
@@ -95,19 +125,26 @@ class main:
 	nodes = [2, 46, 164, 76, 128, 36, 183, 156, 58, 70]
 	vertex = [[76, 46], [46, 156], [183, 164], [70, 156], [2, 164], [2, 164], [76, 164], [76, 2], [128, 46], [58, 46], [164, 128], [46, 128], [2, 128]]
 	"""
+	
+	verts = [1, 2, 3, 4, 5, 6, 7]
+	
+	edges = [[1, 2], [1, 5], [2, 3], [2, 5], [2, 6], [3, 6], [4, 5], [5, 6], [6, 7]]
+
 	g = graph()
 
-	for item in nodes:
+	for item in verts:
 		g.agregarVertice(item)
 
-	for pair in vertex:
-		g.agregarArista(pair[0],pair[1], 1)
+	for pair in edges:
+		g.agregarArista(pair[0],pair[1], -1)
 
-	"""
-	g.imprimirGrafica()
-	#g.DFS(root,0)
+
+	#g.imprimirGrafica()
+	# g.DFS(root,0)
 	g.topoSort()
+	g.falsyVisit()
 	#g.BFS(root)
+	#(7, 7) (6, 6) (3, 5) (5, 4) (2, 3) (1, 2) (4, 1)
 	
 
 	
@@ -115,3 +152,12 @@ class main:
 	#TODO: parse list of vertex and Edged 	
 	#def borrarVecinos(self, v):
 
+"""
+				if(self.vertices[v].nivel == max and self.vertices[v].visitado ==False):
+					self.vertices[v].mark = len
+					len = len-1
+					self.vertices[v].visitado = True
+					print(self.vertices[v].id,self.vertices[v].mark)
+					self.times(max-1,len)
+
+"""

@@ -49,6 +49,11 @@ def crecer(i):
 		arb.append(None)
 
 
+def decrecer():
+	global arb
+	while(arb[len(arb) -1] == None):
+		arb = arb[:len(arb)-1]
+
 
 
 def eliminar(p):
@@ -63,7 +68,7 @@ def eliminar(p):
 			arb[p] = arb[2*p+1]
 			eliminar(2*p+1)
 			
-
+	decrecer()
 
 
 
@@ -74,6 +79,12 @@ print(arb)
 eliminar(1)
 print(arb)
 insertar(1,1)
+insertar(25,7)
+insertar(35,7)
+insertar(45,7)
+eliminar(7)
+
+
 print(arb)
 
 

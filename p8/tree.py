@@ -21,19 +21,20 @@ def insertar(v,p): #valor(o nodo), posicion
 
 
 def hijos(p):
-	if (len(arb)-1 <= p):	#no existe, fuera de rango
+	if (len(arb)-1 >= p):	#no existe, fuera de rango
+		
+
+		if len(arb)-1 >= (2*p): #tiene hijo izquierdo
+			if len(arb)-1 >= 2*p+1:
+				return 2	#tiene 2hijos
+
+			return 1		#tiene 1 hijo
+		else: 	
+			return 0		#tiene 0 hijos
+
+	else:
 		return -1
-
-	if len(arb)-1 >= (2*p): #tiene hijo izquierdo
-		if len(arb)-1 >= 2*p+1:
-			return 2	#tiene 2hijos
-
-		return 1		#tiene 1 hijo
-	else: 	
-		return 0		#tiene 0 hijos
-
-
-
+	
 def crecer(i):
 	j = i - len(arb)+1
 	for l in range(j):
@@ -57,9 +58,9 @@ def eliminar(p):
 
 
 print(arb)
-print hijos(8)
+#print hijos(5)
 insertar(999,8)
-
+#eliminar(2)
 
 print(arb)
 

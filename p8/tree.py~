@@ -6,11 +6,15 @@ def insertar(v,p): #valor(o nodo), posicion
 		arb.append(v)
 		
 	elif p < len(arb):
-		if hijos(p) >= 1:
+		if hijos(p) == 1 or hijos(p) ==3:
 			aux = arb[p]
 			arb[p] = v
 			insertar(aux, 2*p)
-		
+			# para 2 intercmbiar con el 2p +1 
+		elif(hijos(p) == 2):
+			aux = arb[p]
+			arb[p] = v
+			insertar(aux,2*p+1)
 		elif hijos(p) == 0:
 			print("hijos=0")
 			crecer(2*p)
@@ -24,11 +28,15 @@ def hijos(p):
 	if (len(arb)-1 >= p):	#no existe, fuera de rango
 		
 
-		if len(arb)-1 >= (2*p): #tiene hijo izquierdo
-			if len(arb)-1 >= 2*p+1:
-				return 2	#tiene 2hijos
+		if len(arb)-1 >= (2*p) and arb[2*p] != None: #tiene hijo izquierdo
+			if len(arb)-1 >= 2*p+1 and arb[2*p+1]!= None:
+				return 3	#tiene 2hijos
 
 			return 1		#tiene 1 hijo
+
+		elif( len(arb)-1 >= 2*p+1 and arb[2*p+1]!= None ):	
+			return 2
+
 		else: 	
 			return 0		#tiene 0 hijos
 
@@ -38,7 +46,7 @@ def hijos(p):
 def crecer(i):
 	j = i - len(arb)+1
 	for l in range(j):
-		arb.append(0)
+		arb.append(None)
 
 
 
@@ -46,10 +54,14 @@ def crecer(i):
 def eliminar(p):
 	if (hijos(p) !=-1 ):
 		if(hijos(p) == 0):
-			arb[p] = 0
-		elif(hijos(p) >= 1):
+			arb[p] = None # deprecated: 0
+		elif(hijos(p) == 1  or hijos(p) ==3 ):
 			arb[p] = arb[2*p]
 			eliminar(2*p)
+		
+		elif(hijos(p) == 2 ):
+			arb[p] = arb[2*p+1]
+			eliminar(2*p+1)
 			
 
 
@@ -59,9 +71,8 @@ def eliminar(p):
 
 print(arb)
 #print hijos(5)
-insertar(999,8)
-eliminar(2)
-
+eliminar(1)
+insertar(1,1)
 print(arb)
 
 

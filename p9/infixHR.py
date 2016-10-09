@@ -6,7 +6,8 @@ for linea in sys.stdin:
     if len(linea) > 1 :
         linea = list(map(int,linea))
        
-    
+    else:
+        linea = []
     
 lista = linea  
 lista_infix = []

@@ -1,10 +1,14 @@
 lista = [0, 67, 27, 28, 79, 72, 14, 48]
-lista = [0]
+lista = []
 lista_infix = []
 lista_prefix = []
 lista_posfix = []
 
-
+linea = "[0]"
+linea = linea.replace("[","").replace("]","").split(",")
+if len(linea) > 1 :
+    linea = list(map(int,linea))
+print (linea)
 
 def infix(i):
     global lista
@@ -94,10 +98,9 @@ def posfix(i):
 
 
 infix(1)
-print lista_infix
+print (lista_infix)
 
 prefix(1)
-print lista_prefix
-
+print (lista_prefix)
 posfix(1)
-print lista_posfix
+print (lista_posfix)

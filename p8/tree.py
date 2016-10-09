@@ -65,7 +65,7 @@ def decrecer():
 def eliminar(p):
 	if (hijos(p) !=-1 ):
 		if(hijos(p) == 0):
-			arb[p] = None # deprecated: 0
+			arb[p] = None 
 		elif(hijos(p) == 1  or hijos(p) ==3 ):
 			arb[p] = arb[2*p]
 			eliminar(2*p)

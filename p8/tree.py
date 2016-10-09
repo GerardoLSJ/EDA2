@@ -1,5 +1,6 @@
 
-arb = [0,1,6,3,7,9,4,8,19]
+#arb = [0,1,6,3,7,9,4,8,19]
+
 
 def insertar(v,p): #valor(o nodo), posicion
 	if p == len(arb):
@@ -25,23 +26,27 @@ def insertar(v,p): #valor(o nodo), posicion
 
 
 def hijos(p):
-	if (len(arb)-1 >= p):	#no existe, fuera de rango
+	if ( p <= len(arb)-1 ):	#no existe, fuera de rango
 		
-
-		if len(arb)-1 >= (2*p) and arb[2*p] != None: #tiene hijo izquierdo
-			if len(arb)-1 >= 2*p+1 and arb[2*p+1]!= None:
-				return 3	#tiene 2hijos
-
-			return 1		#tiene 1 hijo
-
-		elif( len(arb)-1 >= 2*p+1 and arb[2*p+1]!= None ):	
-			return 2
-
-		else: 	
-			return 0		#tiene 0 hijos
-
+		if len(arb)-1 >= (2*p+1): #puede que tenga ambos hijos
+			if arb[2*p] != None:  #si tiene hijo izuqierdo
+				if arb[2*p+1] != None: #si tiene ambos hijos
+					return 3
+				return 1 #solo tiene hijo izquierdo
+			elif arb[2*p +1] != None: #Solo tiene hijo derecho
+				return 2
+		elif len(arb)-1 >= 2*p:	#solo hijo izquierdo
+			if arb[2*p] != None:
+				#tiene hijo derecho
+				return 1
+		else:
+			#no tiene hijos
+			return 0
 	else:
+		#no existe
 		return -1
+
+
 	
 def crecer(i):
 	j = i - len(arb)+1
@@ -73,18 +78,20 @@ def eliminar(p):
 
 
 
-
+arb = [0, 20, 1, 57, 46, 6, 88, 40] 
+#[114, 5] 
+#[3]
+insertar(114,5)
 print(arb)
-#print hijos(5)
-eliminar(1)
-print(arb)
-insertar(1,1)
-insertar(25,7)
-insertar(35,7)
-insertar(45,7)
-eliminar(7)
-
-
+eliminar(3)
 print(arb)
 
 
+"""
+Sample Output
+
+[0, 20, 1, 88, 46, 114, None, 40, None, None, 6]
+[0, 20, 1, 88, 46, 114, None, 40, None, None, 6]
+
+
+"""

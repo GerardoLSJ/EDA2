@@ -1,3 +1,17 @@
+"""
+Funcionamiento:
+Utilizando la notacion de arreglos para generar nodos por medio de referencias 2*i  y 2*+1 
+en vez de utilizar clases y referencias en tablas hash, somos capaces de insertar, eliminar
+etc... en arboles binarios de manera rapida y comprensible.
+Para insertar nodos se verifica que no haya un elemento en esa casilla y de ser así se realiza
+un dezplazamiento de los nodos hacia la izquierda recursivamente.
+Para eliminar se verifica si hay hijos de ese nodo y de ser así se reasigna al nodo izquierdo
+o derecho como padre recursivamente para no dejar algun nodo hoja huerfano.
+
+
+"""
+
+
 import sys
 arr = []
 for line in sys.stdin:

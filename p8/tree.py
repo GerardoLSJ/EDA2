@@ -8,16 +8,17 @@ def insertar(v,p): #valor(o nodo), posicion
 		
 	elif p < len(arb):
 		if hijos(p) == 1 or hijos(p) ==3:
+			#tien izq o ambos
 			aux = arb[p]
 			arb[p] = v
 			insertar(aux, 2*p)
-			# para 2 intercmbiar con el 2p +1 
+			
 		elif(hijos(p) == 2):
-			aux = arb[p]
+			#solo tiene hijo derecho
+			arb[2*p] = arb[p]
 			arb[p] = v
-			insertar(aux,2*p+1)
+			#insertar(aux,2*p+1)
 		elif hijos(p) == 0:
-			print("hijos=0")
 			crecer(2*p)
 			arb[2*p] = arb[p]
 			arb[p] = v

@@ -3,7 +3,7 @@ lista_infix = []
 lista_prefix = []
 lista_posfix = []
 
-lista = [0,67,27,28,79]
+
 
 def infix(i):
     global lista
@@ -29,13 +29,6 @@ def infix(i):
 
     
 
-infix(1)
-print (lista_infix)
-lista = [0,67,27,28,79,72]
-lista_infix =[]
-infix(1)
-print (lista_infix)
-
 
 def prefix(i):
     global lista
@@ -59,13 +52,15 @@ def prefix(i):
                 
             
         
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 
                 prefix(2*i+1)
                 
     else:
         
         lista_prefix.append(lista[i])
+
+
 
 
 def posfix(i):
@@ -86,15 +81,37 @@ def posfix(i):
             if(lista[2*i != None]): #Tiene izquierdo?
                 posfix(2*i)
 
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 
                 posfix(2*i+1)
                 #despues de imprimir el hijo derecho el padre
+                lista_posfix.append(lista[i])
+            elif(i):
                 lista_posfix.append(lista[i])
     else:
         
         lista_posfix.append(lista[i])
 
+
+
+lista = [0,67,27,28,79]
+infix(1)
+prefix(1)
+posfix(1)
+print (lista_infix)
+print (lista_prefix)
+print (lista_posfix)
+
+lista = [0,67,27,28,79,72]
+lista_posfix =[]
+lista_prefix =[]
+lista_infix =[]
+infix(1)
+prefix(1)
+posfix(1)
+print (lista_infix)
+print (lista_prefix)
+print (lista_posfix)
 
 """
 prefix(1)

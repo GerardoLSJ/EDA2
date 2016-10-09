@@ -20,14 +20,7 @@ def infix(i):
     global lista
     global lista_infix
     
-
-    if(len(lista) == 0):
-        return 0
-
-    elif(len(lista) == 1):
-        lista_infix.append(lista[0])
-
-    elif(len(lista)-1 >= 2*i):
+    if(len(lista) > 2*i):
 
         if(lista[i] != None):
             if(lista[2*i != None]):
@@ -36,12 +29,16 @@ def infix(i):
             #print lista[i]
             lista_infix.append(lista[i])
 
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 infix(2*i+1)
 
+    
     else:
         #print lista[i]
         lista_infix.append(lista[i])
+
+
+    
 
 
 def prefix(i):
@@ -66,13 +63,15 @@ def prefix(i):
                 
             
         
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 
                 prefix(2*i+1)
                 
     else:
         
         lista_prefix.append(lista[i])
+
+
 
 
 def posfix(i):
@@ -93,14 +92,17 @@ def posfix(i):
             if(lista[2*i != None]): #Tiene izquierdo?
                 posfix(2*i)
 
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 
                 posfix(2*i+1)
                 #despues de imprimir el hijo derecho el padre
                 lista_posfix.append(lista[i])
+            elif(i):
+                lista_posfix.append(lista[i])
     else:
         
         lista_posfix.append(lista[i])
+
 
 
 infix(1)

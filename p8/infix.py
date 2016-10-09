@@ -1,27 +1,15 @@
-lista = [0, 67, 27, 28, 79, 72, 14, 48]
-lista = []
+
 lista_infix = []
 lista_prefix = []
 lista_posfix = []
 
-linea = "[0]"
-linea = linea.replace("[","").replace("]","").split(",")
-if len(linea) > 1 :
-    linea = list(map(int,linea))
-print (linea)
+lista = [0,67,27,28,79]
 
 def infix(i):
     global lista
     global lista_infix
     
-
-    if(len(lista) == 0):
-        return 0
-
-    elif(len(lista) == 1):
-        lista_infix.append(lista[0])
-
-    elif(len(lista)-1 >= 2*i):
+    if(len(lista) > 2*i):
 
         if(lista[i] != None):
             if(lista[2*i != None]):
@@ -30,12 +18,23 @@ def infix(i):
             #print lista[i]
             lista_infix.append(lista[i])
 
-            if(lista[2*i +1] != None):
+            if(2*i+1 <= len(lista)-1 and lista[2*i +1] != None):
                 infix(2*i+1)
 
+    
     else:
         #print lista[i]
         lista_infix.append(lista[i])
+
+
+    
+
+infix(1)
+print (lista_infix)
+lista = [0,67,27,28,79,72]
+lista_infix =[]
+infix(1)
+print (lista_infix)
 
 
 def prefix(i):
@@ -97,10 +96,9 @@ def posfix(i):
         lista_posfix.append(lista[i])
 
 
-infix(1)
-print (lista_infix)
-
+"""
 prefix(1)
 print (lista_prefix)
 posfix(1)
 print (lista_posfix)
+"""

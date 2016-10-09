@@ -3,7 +3,9 @@ import sys
 
 for linea in sys.stdin:
     linea = linea.replace("[","").replace("]","").split(",")
-    linea = list(map(int,linea))
+    if len(linea) > 1 :
+        linea = list(map(int,linea))
+       
     
     
 lista = linea  

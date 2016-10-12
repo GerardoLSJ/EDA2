@@ -70,7 +70,7 @@ class arbol:
 class main:
 	t = arbol()
 	#t.crearArbol([8,7,6,5])
-	#t.crearArbol([8,6,5,10,7,4])
+	#t.crearArbol([8,6,5,10,7,4,3])
 	t.crearArbol([8,6,10,5,4])
 	t.altura(t.raiz)
 	t.imprimir(t.raiz)
@@ -78,3 +78,6 @@ class main:
 	t.altura(t.raiz)
 	print("------")
 	t.imprimir(t.raiz)
+
+	# NOTE: Encontrar al nodo desvalanceado, el 6 la diferencia de sus hijos es mayor de 2.
+	# NOTE: Es el nodo mas profundo nuestro target

@@ -12,15 +12,15 @@ class arbol:
 		self.raiz = None
 
 
-	def agregar(self, ver):
+	def agregar(self,act, ver):
 		if act.id < ver.id:
 			if act.hder != None:
-				agregar(act.hder, ver)
+				self.agregar(act.hder, ver)
 			else:
 				act.hder = ver
 		else:
 			if act.hizq != None:
-				agregar(act.hizq,ver)
+				self.agregar(act.hizq,ver)
 			else:
 				act.hizq = ver
 
@@ -30,13 +30,20 @@ class arbol:
 		if(self.raiz == None):
 			self.raiz = ver
 		else:
-			agregar(self.raiz, ver)
+			self.agregar(self.raiz, ver)
 
 
 	def crearArbol(self,lv):
 		for i in range(len(lv)):
-			agregarVertice(i)
+			self.agregarVertice(lv[i])
+
+	def imprimir(self,act):
+		if act != None:
+			self.imprimir(act.hizq)
+			print(act.id)
+			self.imprimir(act.hder)
 
 class main:
 	t = arbol()
-	t.crearArbol([7,6,5])
+	t.crearArbol([8,7,6,5])
+	t.imprimir(t.raiz)

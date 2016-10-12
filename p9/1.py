@@ -23,7 +23,8 @@ class arbol:
 			if act.hizq != None:
 				self.agregar(act.hizq,ver)
 			else:
-				act.hizq = ver
+				act.hizq 	= ver
+				ver.padre 	= act
 
 
 	def agregarVertice(self,v):
@@ -48,7 +49,6 @@ class arbol:
 		if(act != None):
 			a1 = self.altura(act.hizq)
 			a2 = self.altura(act.hder)
-			print max([a1,a2])
 			act.altura = max([a1,a2]) +1
 			return act.altura
 		else:
@@ -60,6 +60,7 @@ class arbol:
 class main:
 	t = arbol()
 	#t.crearArbol([8,7,6,5])
-	t.crearArbol([8,5,10,6,7])
+	#t.crearArbol([8,6,5,10,7,4])
+	t.crearArbol([8,6,5,10,4])
 	t.altura(t.raiz)
 	t.imprimir(t.raiz)

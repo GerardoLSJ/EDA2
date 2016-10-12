@@ -55,12 +55,26 @@ class arbol:
 			return -1
 
 
+	def RR(self, act):
+		nr 			= act.hizq
+		act.hizq 	= nr.hder
+		nr.hder 	= act
+		nr.padre 	= act.padre
+		act.padre 	= nr
+		if act.hizq != None:
+			act.hizq.padre = act
+		if nr.padre != None:
+			nr.padre.hizq = nr
 
 
 class main:
 	t = arbol()
 	#t.crearArbol([8,7,6,5])
 	#t.crearArbol([8,6,5,10,7,4])
-	t.crearArbol([8,6,5,10,4])
+	t.crearArbol([8,6,10,5,4])
 	t.altura(t.raiz)
+	t.imprimir(t.raiz)
+	t.RR(t.raiz.hizq)
+	t.altura(t.raiz)
+	print("------")
 	t.imprimir(t.raiz)

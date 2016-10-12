@@ -1,0 +1,18 @@
+class vertex:
+	def __init__(self,v):
+		self.id     = v
+		self.padre  = None
+		self.hizq   = None
+		self.hder   = None
+
+
+class arbol:
+
+	def __init__(self):
+		self.raiz = None
+
+	def agregarVertice(self,v):
+		ver = vertex(v)
+		if(self.raiz == None):
+			self.raiz = ver 
+		

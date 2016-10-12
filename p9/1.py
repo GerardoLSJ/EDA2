@@ -65,13 +65,16 @@ class arbol:
 			act.hizq.padre = act
 		if nr.padre != None:
 			nr.padre.hizq = nr
+		if self.raiz == act:
+			self.raiz = nr
 
 
 class main:
 	t = arbol()
 	#t.crearArbol([8,7,6,5])
 	#t.crearArbol([8,6,5,10,7,4,3])
-	t.crearArbol([8,6,10,5,4])
+	#t.crearArbol([8,6,10,5,4])
+	t.crearArbol([8,6,10,5,7,4])
 	t.altura(t.raiz)
 	t.imprimir(t.raiz)
 	t.RR(t.raiz.hizq)

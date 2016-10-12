@@ -84,3 +84,5 @@ class main:
 
 	# NOTE: Encontrar al nodo desvalanceado, el 6 la diferencia de sus hijos es mayor de 2.
 	# NOTE: Es el nodo mas profundo nuestro target
+	# NOTE: TAREA, --elimine vertices--,---preservar BST, rotacion a la izqueirda
+	# NOTE: TAREA, obtener los vertices desvalanceadoS!

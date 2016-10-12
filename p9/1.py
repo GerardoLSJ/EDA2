@@ -4,6 +4,7 @@ class vertex:
 		self.padre  = None
 		self.hizq   = None
 		self.hder   = None
+		self.altura = -1
 
 
 class arbol:
@@ -40,10 +41,25 @@ class arbol:
 	def imprimir(self,act):
 		if act != None:
 			self.imprimir(act.hizq)
-			print(act.id)
+			print(act.id , act.altura)
 			self.imprimir(act.hder)
+
+	def altura(self, act):
+		if(act != None):
+			a1 = self.altura(act.hizq)
+			a2 = self.altura(act.hder)
+			print max([a1,a2])
+			act.altura = max([a1,a2]) +1
+			return act.altura
+		else:
+			return -1
+
+
+
 
 class main:
 	t = arbol()
-	t.crearArbol([8,7,6,5])
+	#t.crearArbol([8,7,6,5])
+	t.crearArbol([8,5,10,6,7])
+	t.altura(t.raiz)
 	t.imprimir(t.raiz)

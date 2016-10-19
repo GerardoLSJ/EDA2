@@ -1,3 +1,5 @@
+
+
 class vertex:
 	def __init__(self,v):
 		self.id     = v
@@ -45,18 +47,21 @@ class arbol:
 			print(act.id,act.altura)
 			self.imprimir(act.hder)
 
-	def imprimirDesv(self,act):
+	def imprimirDesv(self,act, arr=[]):
 		if act != None:
-			self.imprimirDesv(act.hizq)
+			self.imprimirDesv(act.hizq, arr)
 			if(act.hizq != None and act.hder != None and abs(act.hizq.altura - act.hder.altura ) > 1 ):
-				print( act.id)
+				#print( act.id)
+				arr.append(act.id)
 			elif(act.hizq == None and act.hder != None and  act.hder.altura  > 0 ):
-				print(act.id)
+				#print(act.id)
+				arr.append(act.id)
 			elif (act.hizq != None and act.hder == None and  act.hizq.altura > 0 ):
-				print(act.id)
-			print(act.id,act.altura)
-			self.imprimirDesv(act.hder)
-
+				#print(act.id)
+				arr.append(act.id)
+			#print(act.id,act.altura)
+			self.imprimirDesv(act.hder, arr)
+			return arr
 
 	def altura(self, act):
 		if(act != None):
@@ -85,15 +90,17 @@ class arbol:
 class main:
 	t = arbol()
 	#t.crearArbol([8,7,6,5])
-	#t.crearArbol([8,6,5,10,7,4,3])
+	#t.crearArbol([8,6,5,10,7,4,3,2,1])
 	#t.crearArbol([8,6,10,5,4])
-	t.crearArbol([8,6,10,5,7,4])
+	#t.crearArbol([8,6,10,5,7,4])
+	t.crearArbol([23, 54, 89, 39, 13, 56, 36, 75, 14, 27])
 	t.altura(t.raiz)
-	t.imprimir(t.raiz)
-	t.RR(t.raiz.hizq)
-	t.altura(t.raiz)
-	print("------")
-	t.imprimirDesv(t.raiz)
+	#t.imprimir(t.raiz)
+	#t.RR(t.raiz.hizq)
+	#t.altura(t.raiz)
+	#print("------")
+	arr = t.imprimirDesv(t.raiz)
+	print arr
 
 	# NOTE: Encontrar al nodo desvalanceado, el 6 la diferencia de sus hijos es mayor de 2.
 	# NOTE: Es el nodo mas profundo nuestro target

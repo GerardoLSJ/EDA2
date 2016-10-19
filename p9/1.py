@@ -42,8 +42,21 @@ class arbol:
 	def imprimir(self,act):
 		if act != None:
 			self.imprimir(act.hizq)
-			print(act.id , act.altura)
+			print(act.id,act.altura)
 			self.imprimir(act.hder)
+
+	def imprimirDesv(self,act):
+		if act != None:
+			self.imprimirDesv(act.hizq)
+			if(act.hizq != None and act.hder != None and abs(act.hizq.altura - act.hder.altura ) > 1 ):
+				print( act.id)
+			elif(act.hizq == None and act.hder != None and  act.hder.altura  > 0 ):
+				print(act.id)
+			elif (act.hizq != None and act.hder == None and  act.hizq.altura > 0 ):
+				print(act.id)
+			print(act.id,act.altura)
+			self.imprimirDesv(act.hder)
+
 
 	def altura(self, act):
 		if(act != None):
@@ -80,7 +93,7 @@ class main:
 	t.RR(t.raiz.hizq)
 	t.altura(t.raiz)
 	print("------")
-	t.imprimir(t.raiz)
+	t.imprimirDesv(t.raiz)
 
 	# NOTE: Encontrar al nodo desvalanceado, el 6 la diferencia de sus hijos es mayor de 2.
 	# NOTE: Es el nodo mas profundo nuestro target

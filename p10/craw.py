@@ -2,16 +2,7 @@
 # -*- coding: utf-8 -*-
 import os
 
-def createDirectory(ruta):
-    try:
-        os.makedirs(ruta)
-    except OSError as e:
-        print('e')
 
-    os.chdir(ruta)
-
-
-createDirectory('/users/edaII08/edaII08alu23/Escritorio/EDA2/p10/')
 dic = {}
 a = open('hola.txt','r')
 l = a.readlines()
@@ -26,6 +17,26 @@ for line in l:
 
 print dic
 print sorted(dic.items(), key=lambda x: x[1])
+
+
+def createDirectory(ruta):
+    try:
+        os.makedirs(ruta)
+    except OSError as e:
+        print('e')
+
+    os.chdir(ruta)
+
+
+createDirectory('/users/edaII08/edaII08alu23/Escritorio/EDA2/p10/nuevas')
+
+for pal in dic.keys():
+    print pal
+    archivo = open(pal ,'w')
+    archivo.write(pal +' '+str(dic[pal]))
+    archivo.close
+
+
 '''
 print line[0]
 print line[1]

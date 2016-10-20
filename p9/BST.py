@@ -1,11 +1,16 @@
+''''
 import sys
-arr = []
-'''
+tupla = []
+
 for line in sys.stdin:
-    arr = line.replace('[','').replace(']', '').split(",")
-    arr = list(map(int,arr))
+    tupla.append(line)
+    
+arr = tupla[0].replace('[','').replace(']', '').split(",")
+arr = list(map(int,arr))
+query = tupla[1]
 '''
-node = -1
+
+
 
 class vertex:
     def __init__(self,v):
@@ -28,6 +33,7 @@ class arbol:
                 self.agregar(act.hder, ver)
             else:
                 act.hder = ver
+                ver.padre = act
         else:
             if act.hizq != None:
                 self.agregar(act.hizq,ver)
@@ -51,7 +57,7 @@ class arbol:
     def imprimir(self,act):
         if act != None:
             self.imprimir(act.hizq)
-            print(act.id,act.altura)
+            print( '(' + str(act.id) + ', '+ str(act.altura) + ')')
             self.imprimir(act.hder)
 
     def imprimirDesv(self,act, arr=[]):
@@ -81,7 +87,6 @@ class arbol:
 
 
     def RR(self, act):
-        print("En RR:")
         nr 			= act.hizq
         act.hizq 	= nr.hder
         nr.hder 	= act
@@ -95,6 +100,7 @@ class arbol:
             self.raiz = nr
 
     def LR(self, act):
+        #print('ACTUAL_lr: ',act)
         nr 			= act.hder
         act.hder 	= nr.hizq
         nr.hizq 	= act
@@ -110,34 +116,31 @@ class arbol:
 
     def busq(self, act, query):
         global node
+        #print('ACTUAL_bsq',act.id)
         if act != None:
             if( act.id == query):
-                print("FOUND")
                 #self.RR(act)
+                self.LR(act)
                 return act
             elif( act.id < query):
                 self.busq(act.hder, query)
             elif( act.id > query):
                 self.busq(act.hizq, query) 
         else:
-            print("Fin")
+            print('')
 
 class main:
+    arr = [8, 14, 27,24, 30, 4, 9,33]
+    query = 14
+    #arr = [8, 14, 27, 30, 4, 9] #hr
+    #query = 8                   #hr
+    ##arr = [27,100,20,21,19,18,17]
+    ##query = 20
     t = arbol()
-    #t.crearArbol([12,10,13,11,9,7])
-    t.crearArbol([8, 14, 27, 30, 4, 9])
+    t.crearArbol(arr)
+    t.altura(t.raiz)
+    #t.imprimir(t.raiz)
+    t.busq(t.raiz, int(query))
+    #t.LR(node) 
     t.altura(t.raiz)
     t.imprimir(t.raiz)
-    
-    print("_________")
-    t.altura(t.raiz)
-    node = t.busq(t.raiz, 8)
-    print(node)
-    t.LR(node)  #VE ESTO lol
-    t.altura(t.raiz)
-    t.imprimir(t.raiz)
-
-    # NOTE: Encontrar al nodo desvalanceado, el 6 la diferencia de sus hijos es mayor de 2.
-    # NOTE: Es el nodo mas profundo nuestro target
-    # NOTE: TAREA, --elimine vertices--,---preservar BST, rotacion a la izqueirda
-    # NOTE: TAREA, obtener los vertices desvalanceadoS!

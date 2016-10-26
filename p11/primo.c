@@ -19,12 +19,12 @@ int isPrime(int i){
 
 int main() {
   int contador = 1;
-  #pragma omp parallel num_threads(5) shared(contador) //Compartimos la variable "i" y tenemos 5 threads
+  #pragma omp parallel num_threads(15) shared(contador) //Compartimos la variable "i" y tenemos 5 threads
   {
     int id = omp_get_thread_num();
     int temp ,res, k;
-
-    for (k = 1000; k >= 1 ; k--) {
+    #pragma omp for
+    for (k = 1000; k >= 1 ; k--) { //cada thread lleva "k numeros"
       #pragma omp critical //Bloque atomico
       {
         temp = contador;

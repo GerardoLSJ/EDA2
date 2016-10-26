@@ -22,23 +22,25 @@ int main() {
   #pragma omp parallel num_threads(5) shared(contador) //Compartimos la variable "i" y tenemos 5 threads
   {
     int id = omp_get_thread_num();
-    int temp ,res;
-    #pragma omp critical //Bloque atomico
-    {
-      temp = contador;
-      contador++;
-    }
-    //printf("Thread: %d\n",id );
-    res = isPrime(temp);
-    if(res == 1){
-      printf("Numero primo: %d , thread: %d\n",temp,id );
+    int temp ,res, k;
+
+    for (k = 1000; k >= 1 ; k--) {
+      #pragma omp critical //Bloque atomico
+      {
+        temp = contador;
+        contador++;
+      }
+
+      //printf("Thread: %d\n",id );
+      res = isPrime(temp);
+      if(res == 1){
+        printf("Numero primo: %d , thread: %d\n",temp,id );
+      }
     }
 
 
   }
   printf("\n");
-  printf("Fin de EJECUACION\n");
-  printf("varlor final de i: %d\n",contador );
   printf("\n");
 return 0;
 }

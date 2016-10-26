@@ -5,9 +5,9 @@
 
 int main() {
   int i;
-  #pragma omp parallel num_threads(5) shared(i)
+  #pragma omp parallel num_threads(5) shared(i) //Compartimos la variable "i" y tenemos 5 threads
   {
-    #pragma omp critical
+    #pragma omp critical //Bloque atomico
     {
       int id = omp_get_thread_num();
       i = id;
@@ -15,10 +15,6 @@ int main() {
 
     }
 
-    /*for ( i = 0; i < 10; i++) {
-      printf("Al Thread %d, numero: %d\n",id,i );
-    }
-    */
 
   }
   printf("\n");

@@ -16,19 +16,20 @@ nodo* crear(int e){
   return nuevo;
 }
 
-void enq(int e){
+void push(int e){
   nodo *nodo = crear(e);
   if(head == NULL){
       head = nodo;  //La cola esta vacia
       tail = nodo;
   }else{
-    tail->next = nodo;
-    tail = tail->next;
+    nodo->next = head;
+    head = nodo;
+
   }
 
 }
 
-int deq(){
+int pop(){
   if(head != NULL){
       nodo *tmp = head;
       head = head->next;
@@ -54,6 +55,15 @@ void imprimir_cola(){
 
 
 int main() {
+/*
+  push(1);
+  push(2);
+  push(33);
+  printf("%d\n",pop() );
+  printf("%d\n",pop() );
+  printf("%d\n",pop() );
+*/
+
   #pragma omp parallel num_threads(5)
   {
       int id = omp_get_thread_num();
@@ -62,7 +72,7 @@ int main() {
             #pragma omp critical
             {
 
-                enq(id);
+                push(id);
             }
 
           }
@@ -70,12 +80,13 @@ int main() {
       #pragma omp critical
       {
         imprimir_cola();
-        printf("Eliminando: %d thread: %d\n",deq(),id );
+        printf("Eliminando: %d thread: %d\n",pop(),id );
 
       }
 
 
   }
+
 
   return 0;
 }

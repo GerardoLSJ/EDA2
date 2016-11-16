@@ -6,8 +6,8 @@
 
 int main() {
   long sum_p = 0, suma_n = 0;
-  long sum = 1;
-  int n = 4;
+  //long sum = 1;
+  int n = 16;
   int m[n][n];
   int i,j;
   srand(time(NULL));
@@ -21,20 +21,37 @@ int main() {
     printf("\n");
   }
 
-//Sacar diagonales
+//Sacar diagonales positivas
+#pragma omp parallel num_threads(n)
+{
+    long sum = 1;
+    //for ( i = 0; i < n; i++) { }
+    i = omp_get_thread_num();
+      for ( j = 0; j < n; j++) {
+        //printf("[%d,%d]",j,(j+i)%n );
+        sum*=m[j][(j+i)%n];
 
-  for ( i = 0; i < n; i++) {
-    for ( j = 0; j < n; j++) {
-      printf("[%d,%d]",j,(j+i)%n );
-      sum*=m[j][(j+i)%n];
+
+      }
+      #pragma omp critical
+      {
+        sum_p += sum;
+      }
+      printf("Thread() %d Suma:%li \n",i,sum );
+
+      sum = 1;
+
+}
 
 
-    }
-    sum_p += sum;
-    printf("Suma:%li \n",sum );
+//Sacar diagonales negativas
+/*
+#pragma omp parallel num_threads(n)
+{
+}
 
-    sum = 1;
-  }
+*/
+
 printf("Suma posi: %li\n",sum_p );
   return 0;
 }

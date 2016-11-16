@@ -43,3 +43,6 @@ int main() {
   printf("Pi + %f\n",pi );
   return 0;
 }
+
+
+//TODO Speed up

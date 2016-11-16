@@ -9,7 +9,7 @@ int main() {
   int g=0;        //conteo de gotas
   int c=0;        //gotas dentro del circulo
   int x,y;      //Coordenadas
-  int n = 50000;  //veces que se reptie
+  int n = 20000000;  //veces que se reptie
   double pi;
   double elapsed;
   clock_t t1, t2;
@@ -17,7 +17,15 @@ int main() {
 
   int i;
   t1 = clock();
-  #pragma omp parallel
+  time_t start_t, end_t;
+   double diff_t;
+
+   printf("Starting of the program...\n");
+   time(&start_t);
+
+
+
+  #pragma omp parallel num_threads(1)
   {
     #pragma omp for
     for ( i=0; i < n; i++) {
@@ -41,13 +49,20 @@ int main() {
 
   pi = (c*4)/(double)g;
   t2 = clock();
-  elapsed = (t2-t1);
-  printf("Gotas tota + %d\n",g );
-  printf("Gotas dentro + %d\n",c );
+  
+  printf("Gotas total: %d\n",g );
+  printf("Gotas dentro: %d\n",c );
   printf("Pi:  %f\n",pi );
   printf("t1  %li\n",t1 );
   printf("t2  %li\n",t2 );
+  elapsed = ((double)t2 - t1) / CLOCKS_PER_SEC * 1000;
   printf("elapsed  %f\n",elapsed );
+
+     time(&end_t);
+   diff_t = difftime(end_t, start_t);
+
+   printf("Execution time = %f\n", diff_t);
+   printf("Exiting of the program...\n");
   return 0;
 }
 

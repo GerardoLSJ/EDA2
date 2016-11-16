@@ -22,8 +22,8 @@ void push(int e){
       head = nodo;  //La cola esta vacia
       tail = nodo;
   }else{
-    nodo->next = head;
-    head = nodo;
+    nodo->next = head;  // real biz
+    head = nodo;        // works 
 
   }
 

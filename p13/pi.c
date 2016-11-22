@@ -16,7 +16,7 @@ int main() {
   srand(time(NULL));
 
   int i;
-  t1 = clock();
+
   time_t start_t, end_t;
    double diff_t;
 
@@ -25,19 +25,19 @@ int main() {
 
 
 
-  #pragma omp parallel num_threads(1)
+  #pragma omp parallel 
   {
     #pragma omp for
     for ( i=0; i < n; i++) {
       x = (rand() % (2*r) )- r; //-r para abarcar negativos
       y = (rand() % (2*r) )- r;
-      #pragma omp critical
+      #pragma omp critical (gplus)
       {
             g++; //contador de gotas totales
       }
 
       if ( ((x*x) + (y*y)) <= (r*r) ) { //Esta dentro del circulo
-        #pragma omp critical
+        #pragma omp critical (cplus)
         {
           c++;  //La  gota cayo adentro
         }
@@ -48,18 +48,13 @@ int main() {
 }//pragma
 
   pi = (c*4)/(double)g;
-  t2 = clock();
   
   printf("Gotas total: %d\n",g );
   printf("Gotas dentro: %d\n",c );
   printf("Pi:  %f\n",pi );
-  printf("t1  %li\n",t1 );
-  printf("t2  %li\n",t2 );
-  elapsed = ((double)t2 - t1) / CLOCKS_PER_SEC * 1000;
-  printf("elapsed  %f\n",elapsed );
 
-     time(&end_t);
-   diff_t = difftime(end_t, start_t);
+  time(&end_t);
+  diff_t = difftime(end_t, start_t);
 
    printf("Execution time = %f\n", diff_t);
    printf("Exiting of the program...\n");

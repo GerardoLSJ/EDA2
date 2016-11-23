@@ -7,7 +7,7 @@
 int main() {
   long sum_p = 0, suma_n = 0;
   //long sum = 1;
-  int n = 16;
+  int n = 2;
   int m[n][n];
   int i,j;
   srand(time(NULL));
@@ -28,8 +28,12 @@ int main() {
     //for ( i = 0; i < n; i++) { }
     i = omp_get_thread_num();
       for ( j = 0; j < n; j++) {
-        //printf("[%d,%d]",j,(j+i)%n );
-        sum*=m[j][(j+i)%n];
+        #pragma omp critical
+        {
+          printf("[%d,%d]",j,(j+i)%n );
+          sum*=m[j][(j+i)%n];
+        }
+
 
 
       }
